@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css" />
+  <link rel="stylesheet" href="css/libraries/dc.min.css" type="text/css" />
+
+  <link rel="stylesheet" href="css/styles.css" type="text/css" />
+
+
+  <script src="js/libraries/d3.min.js"></script>
+  <script src="js/libraries/crossfilter.min.js"></script>
+  <script src="js/libraries/dc.min.js"></script>
+  <script src="js/libraries/queue.min.js"></script>
+
+  <script src="js/rendergraphs.js"></script>
+
+  <title> PokeVisualizer </title>
+
+</head>
+
+
+<body class ="background-image">
+  <nav class ="navbar navbar-default">
+    <div class="container-fluid">
+      <div class = "row">
+        <div class = "col-xs-12">
+          <div class = "col-xs-5">
+            <a class = "navbar-nav"> <img alt = "Pokeball img" src= "images/pokeball.png" height="50" width="50"></a>
+          </div>
+          <div class = "col-xs-2 main-header">
+              <a class = "navbar-header center-block">PokeVisualizer </a>
+          </div>
+          <div class = "col-xs-5">
+            <a class = "navbar-brand"> <img alt = "Pokeball img" src= "images/pokeball.png" height="50" width="50"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+
+<section class="container">
+
+  <!-- Reset the visualizer -->
+  <div class ="button-wrapper">
+    <div class ="reset-button">
+      <a href ="javascript:dc.filterAll(); dc.renderAll();"> Select All Pokemon </a>
+    </div>
+  </div>
+
+
+  <!-- Pokemon dropdown menu and number display -->
+
+  <div class="row">
+    <div class="col-xs-12">
+      <div class = "row height-alignment">
+        <div class ="col-xs-12 col-sm-6 height-alignment">
+            <div id ="number-selected" class = "content-style">
+              <h4> Number of Pokemon Selected </h4>
+              <hr>
+            </div>
+          </div>
+        <div class ="col-xs-12 col-sm-6 height-alignment">
+          <div id = "select-pokemon" class = "content-style">
+            <h4> Pokemon Select </h4>
+            <hr>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- BST chart -->
+    <div class = "row">
+      <div class ="col-xs-12">
+        <div class = "content-style dc-chart">
+          <div id = "BST-chart">
+            <h4> Pokemon Base Stat Totals </h4>
+            <hr>
+          </div>
+          <p> This chart compiles the base stat total of the selected pokemon. </p>
+        </div>
+      </div>
+    </div>
+
+    <div class = "row">
+      <div class ="col-xs-12">
+        <div class = "content-style">
+          <h4> Total Stats of Selected Pokemon</h4>
+        </div>
+      </div>
+    </div>
+
+<!-- Individual Stats for selected Pokemon -->
+    <div class="row">
+            <div class="col-xs-12">
+                <div class="row height-alignment">
+                    <div class="col-xs-6 col-sm-2 height-alignment">
+                        <div id="HP" class="content-style">
+                            <h4> HP </h4>
+                            <hr>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-2 height-alignment">
+                        <div id="Atk" class="content-style">
+                            <h4> Attack </h4>
+                            <hr>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-2 height-alignment">
+                        <div id="Def" class="content-style">
+                            <h4> Defense </h4>
+                            <hr>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-2 height-alignment">
+                        <div id="SpAtk" class="content-style">
+                            <h4> Special Atk </h4>
+                            <hr>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-2 height-alignment">
+                        <div id="SpDef" class="content-style">
+                            <h4> Special Def </h4>
+                            <hr>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-2 height-alignment">
+                        <div id="Spd" class="content-style">
+                            <h4> Speed </h4>
+                            <hr>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-2 align-content-sm-center">
+                        <div id="Total" class="content-style">
+                            <h4> BST </h4>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<!-- typecharts -->
+    <div class = "row">
+      <div class ="col-xs-12">
+        <div class ="col-xs-6">
+          <div class = "content-style dc-chart">
+            <div id = "Type-chart">
+              <h4> Pokemon Types </h4>
+            <hr>
+          </div>
+          <p> This chart compiles the primary types of each Pokemon </p>
+        </div>
+      </div>
+
+      <div class = "col-xs-6">
+        <div class = "content-style dc-chart">
+          <div id = "Type2-chart">
+            <h4> Pokemon Secondary Types </h4>
+            <hr>
+          </div>
+          <p> This chart compiles the secondary types of each Pokemon </p>
+        </div>
+      </div>
+
+
+      </div>
+    </div>
+
+<!-- Pie charts for Generation, Legendary/Mega Status, Smogon Tier -->
+    <div class = "row">
+      <div class="col-xs-12">
+        <div class="row height-alignment">
+          <div class="col-xs-12 col-sm-3 height-alignment">
+            <div class="content-style dc-chart">
+              <div id="generation">
+                <h4> Pokemon Generation </h4>
+                <hr>
+              </div>
+              <p> The generation that the Pokemon were released in </p>
+              </div>
+            </div>
+          <div class="col-xs-12 col-sm-3 height-alignment">
+            <div class="content-style dc-chart">
+              <div id="legendary">
+                <h4> Legendary Status </h4>
+                <hr>
+              </div>
+                <p> Whether or not the Pokemon are Legendary Pokemon </p>
+                </div>
+              </div>
+          <div class="col-xs-12 col-sm-3 height-alignment">
+            <div class="content-style dc-chart">
+              <div id="mega">
+                <h4> Mega Evolution Status </h4>
+                <hr>
+              </div>
+                <p> Whether or not the Pokemon are Mega Evolutions of a Pokemon </p>
+                </div>
+              </div>
+          <div class="col-xs-12 col-sm-3 height-alignment">
+            <div class="content-style dc-chart">
+              <div id="tier">
+                <h4> Smogon Tier List Ranking </h4>
+                <hr>
+              </div>
+                <p> An unofficial ranking by the competitive community of a Pokemon's viability  </p>
+                <p> In order from best to worst: AG, Ubers, OU, BL, UU, BL2, RU, BL3, NU, BL4, PU </p>
+                </div>
+              </div>
+
+  </section>
+
+  </body>
+
+</html>
