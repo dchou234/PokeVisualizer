@@ -103,8 +103,6 @@ function showDefense(i){
     })
     .group(def)
     .formatNumber(d3.format(".3s"));
-
-  //dc.renderAll();
 }
 
 function showSpAtk(i){
@@ -118,8 +116,6 @@ function showSpAtk(i){
     })
     .group(spatk)
     .formatNumber(d3.format(".3s"));
-
-  //dc.renderAll();
 }
 
 function showSpDef(i){
@@ -133,8 +129,6 @@ function showSpDef(i){
     })
     .group(spdef)
     .formatNumber(d3.format(".3s"));
-
-  //dc.renderAll();
 }
 
 function showSpd(i){
@@ -148,8 +142,6 @@ function showSpd(i){
     })
     .group(spd)
     .formatNumber(d3.format(".3s"));
-
-  //dc.renderAll();
 }
 
 function showTotal(i){
