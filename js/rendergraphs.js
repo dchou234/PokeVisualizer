@@ -1,4 +1,5 @@
-queue()
+var q = queue();
+q
   .defer(d3.csv, "data/smogon.csv")
   .await(makeGraphs);
 
