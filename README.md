@@ -9,3 +9,4 @@ Click on elements of the charts to filter for that element on all charts.
 
 Built using dc.js and Bootstrap 3
 
+Check current deployment at https://dchou234.github.io/PokeVisualizer/ 
