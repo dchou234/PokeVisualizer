@@ -3,7 +3,9 @@ Pokemon Stat Visualizer for CS396 A3
 
 Final Project for CS396 Interactive Data Visualizations
 
-Allows users to filter for specific Pokemon as well as visualize the base stats of Pokemon not present in the game.
+Allows users to filter for specific Pokemon as well as visualize the their base stats not viewable in the game.
+
+Contains information on their typing, stats, Mega Evolution/Legendary Status, and unofficial Smogon tier ranking.
 
 Click on elements of the charts to filter for that element on all charts.
 
