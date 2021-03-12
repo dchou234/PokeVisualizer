@@ -38,7 +38,6 @@ function pokemon_selector(i){
 
 function show_numselected(i){
   var total = i.groupAll('#');
-
   var numberDis = dc.numberDisplay("#number-selected")
 
   numberDis
@@ -204,8 +203,20 @@ function show_gen(i){
   var genD = dc.pieChart('#generation')
 
   genD
-    .height(300)
+    .height(400)
     .radius(125)
+    .minAngleForLabel(0.1)
+    .externalLabels(35)
+    .drawPaths(true)
+    .on('pretransition', function(chart){
+      chart.selectAll('text.pie-slice').text(function(d){
+        if(((d.endAngle - d.startAngle) / (2*Math.PI) * 100) > 0){
+          return 'Generation ' + d.data.key + ': ' + dc.utils.printSingleValue((d.endAngle - d.startAngle) / (2*Math.PI) * 100) + '%';
+        }
+        else{
+          return;
+        }
+      })})
     .useViewBoxResizing(true)
     .transitionDuration(1000)
     .dimension(genDim)
@@ -218,10 +229,21 @@ function show_legendary(i){
   var legD = dc.pieChart('#legendary')
 
   legD
-    .height(300)
-    .radius(125)
+    .height(400)
+    .radius(120)
+    .on('pretransition', function(chart){
+      chart.selectAll('text.pie-slice').text(function(d){
+        if(((d.endAngle - d.startAngle) / (2*Math.PI) * 100) > 0){
+          return d.data.key + ': ' + dc.utils.printSingleValue((d.endAngle - d.startAngle) / (2*Math.PI) * 100) + '%';
+        }
+        else{
+          return;
+        }
+      })})
     .useViewBoxResizing(true)
     .transitionDuration(1000)
+    .externalLabels(35)
+    .drawPaths(true)
     .ordinalColors(['#E3242B', 'green'])
     .dimension(legDim)
     .group(legGroup);
@@ -233,10 +255,21 @@ function show_mega(i){
   var megaD = dc.pieChart('#mega')
 
   megaD
-    .height(300)
-    .radius(125)
+    .height(400)
+    .radius(120)
+    .on('pretransition', function(chart){
+      chart.selectAll('text.pie-slice').text(function(d){
+        if(((d.endAngle - d.startAngle) / (2*Math.PI) * 100) > 0){
+          return d.data.key + ': ' + dc.utils.printSingleValue((d.endAngle - d.startAngle) / (2*Math.PI) * 100) + '%';
+        }
+        else{
+          return;
+        }
+      })})
     .useViewBoxResizing(true)
     .transitionDuration(1000)
+    .externalLabels(35)
+    .drawPaths(true)
     .ordinalColors(['#E3242B', 'green'])
     .dimension(megaDim)
     .group(megaGroup);
@@ -248,12 +281,21 @@ function show_tier(i){
   var tierD = dc.pieChart('#tier')
 
   tierD
-    .height(300)
+    .height(400)
     .radius(125)
-    .minAngleForLabel(0.01)
-    .externalLabels(15)
+    .minAngleForLabel(0.1)
+    .externalLabels(45)
     .drawPaths(true)
     .cap(7)
+    .on('pretransition', function(chart){
+      chart.selectAll('text.pie-slice').text(function(d){
+        if(((d.endAngle - d.startAngle) / (2*Math.PI) * 100) > 0){
+          return d.data.key + ': ' + dc.utils.printSingleValue((d.endAngle - d.startAngle) / (2*Math.PI) * 100) + '%';
+        }
+        else{
+          return;
+        }
+      })})
     .useViewBoxResizing(true)
     .transitionDuration(1000)
     .dimension(tierDim)
