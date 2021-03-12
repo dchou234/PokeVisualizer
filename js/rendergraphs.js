@@ -28,7 +28,9 @@ function pokemon_selector(i){
   var dim = i.dimension(dc.pluck('Name'));
   var group = dim.group();
 
-  dc.selectMenu('#select-pokemon')
+  var select = dc.selectMenu('#select-pokemon')
+
+  select
     .title(d => d.key)
     .dimension(dim)
     .group(group);
@@ -36,7 +38,10 @@ function pokemon_selector(i){
 
 function show_numselected(i){
   var total = i.groupAll('#');
-  dc.numberDisplay("#number-selected")
+
+  var numberDis = dc.numberDisplay("#number-selected")
+
+  numberDis
     .formatNumber(d3.format("d"))
     .valueAccessor(function(d) {
         return (+d);})
@@ -46,7 +51,9 @@ function show_numselected(i){
 function pokemonBST(i){
   var statDim = i.dimension(dc.pluck('Total'));
   var statGroup = statDim.group().reduceCount();
-  dc.barChart('#BST-chart')
+  var bst = dc.barChart('#BST-chart')
+
+  bst
     .width(768)
     .height(250)
     .x(d3.scale.linear().domain([200,800]))
@@ -62,7 +69,9 @@ function pokemonBST(i){
 
 function showHP(i){
   var hp = i.groupAll().reduceSum(dc.pluck("HP"));
-  dc.numberDisplay("#HP")
+  var hpD = dc.numberDisplay("#HP")
+
+  hpD
     .formatNumber(d3.format("d"))
     .valueAccessor(function(d){
       return d;
@@ -73,7 +82,9 @@ function showHP(i){
 
 function showAttack(i){
   var atk = i.groupAll().reduceSum(dc.pluck("Attack"));
-  dc.numberDisplay("#Atk")
+  var atkD = dc.numberDisplay("#Atk")
+
+  atkD
     .formatNumber(d3.format("d"))
     .valueAccessor(function(d){
       return d;
@@ -84,51 +95,69 @@ function showAttack(i){
 
 function showDefense(i){
   var def = i.groupAll().reduceSum(dc.pluck("Defense"));
-  dc.numberDisplay("#Def")
+  var defD = dc.numberDisplay("#Def")
+
+  defD
     .formatNumber(d3.format("d"))
     .valueAccessor(function(d){
       return d;
     })
     .group(def)
     .formatNumber(d3.format(".3s"));
+
+  //dc.renderAll();
 }
 
 function showSpAtk(i){
   var spatk = i.groupAll().reduceSum(dc.pluck("Sp..Atk"));
-  dc.numberDisplay("#SpAtk")
+  var spatkD = dc.numberDisplay("#SpAtk")
+
+  spatkD
     .formatNumber(d3.format("d"))
     .valueAccessor(function(d){
       return d;
     })
     .group(spatk)
     .formatNumber(d3.format(".3s"));
+
+  //dc.renderAll();
 }
 
 function showSpDef(i){
   var spdef = i.groupAll().reduceSum(dc.pluck("Sp..Def"));
-  dc.numberDisplay("#SpDef")
+  var spddefD = dc.numberDisplay("#SpDef")
+
+  spddefD
     .formatNumber(d3.format("d"))
     .valueAccessor(function(d){
       return d;
     })
     .group(spdef)
     .formatNumber(d3.format(".3s"));
+
+  //dc.renderAll();
 }
 
 function showSpd(i){
   var spd = i.groupAll().reduceSum(dc.pluck("Speed"));
-  dc.numberDisplay("#Spd")
+  var spdD = dc.numberDisplay("#Spd")
+
+  spdD
     .formatNumber(d3.format("d"))
     .valueAccessor(function(d){
       return d;
     })
     .group(spd)
     .formatNumber(d3.format(".3s"));
+
+  //dc.renderAll();
 }
 
 function showTotal(i){
   var tot = i.groupAll().reduceSum(dc.pluck("Total"));
-  dc.numberDisplay("#Total")
+  var totD = dc.numberDisplay("#Total")
+
+  totD
     .formatNumber(d3.format("d"))
     .valueAccessor(function(d){
       return d;
@@ -140,7 +169,9 @@ function showTotal(i){
 function pokemonType(i){
   var typeDim = i.dimension(dc.pluck('Type.1'));
   var typeGroup = typeDim.group().reduceCount();
-  dc.rowChart('#Type-chart')
+  var type1D = dc.rowChart('#Type-chart')
+
+  type1D
     .width(900)
     .height(500)
     .elasticX(true)
@@ -154,7 +185,9 @@ function pokemonType(i){
 function pokemon2ndType(i){
   var type2Dim = i.dimension(dc.pluck('Type.2'));
   var type2Group = type2Dim.group().reduceCount();
-  dc.rowChart('#Type2-chart')
+  var type2D = dc.rowChart('#Type2-chart')
+
+  type2D
     .width(900)
     .height(500)
     .elasticX(true)
@@ -168,9 +201,11 @@ function pokemon2ndType(i){
 function show_gen(i){
   var genDim = i.dimension(dc.pluck('Generation'));
   var genGroup = genDim.group();
-  dc.pieChart('#generation')
+  var genD = dc.pieChart('#generation')
+
+  genD
     .height(300)
-    .radius(90)
+    .radius(125)
     .useViewBoxResizing(true)
     .transitionDuration(1000)
     .dimension(genDim)
@@ -180,13 +215,13 @@ function show_gen(i){
 function show_legendary(i){
   var legDim = i.dimension(dc.pluck('Legendary'));
   var legGroup = legDim.group();
-  dc.pieChart('#legendary')
+  var legD = dc.pieChart('#legendary')
+
+  legD
     .height(300)
-    .radius(90)
+    .radius(125)
     .useViewBoxResizing(true)
     .transitionDuration(1000)
-    .externalLabels(20)
-    .drawPaths(true)
     .ordinalColors(['#E3242B', 'green'])
     .dimension(legDim)
     .group(legGroup);
@@ -195,13 +230,13 @@ function show_legendary(i){
 function show_mega(i){
   var megaDim = i.dimension(dc.pluck('Mega'));
   var megaGroup = megaDim.group();
-  dc.pieChart('#mega')
+  var megaD = dc.pieChart('#mega')
+
+  megaD
     .height(300)
-    .radius(90)
+    .radius(125)
     .useViewBoxResizing(true)
     .transitionDuration(1000)
-    .externalLabels(20)
-    .drawPaths(true)
     .ordinalColors(['#E3242B', 'green'])
     .dimension(megaDim)
     .group(megaGroup);
@@ -210,9 +245,11 @@ function show_mega(i){
 function show_tier(i){
   var tierDim = i.dimension(dc.pluck('Tier'));
   var tierGroup = tierDim.group();
-  dc.pieChart('#tier')
+  var tierD = dc.pieChart('#tier')
+
+  tierD
     .height(300)
-    .radius(90)
+    .radius(125)
     .minAngleForLabel(0.01)
     .externalLabels(15)
     .drawPaths(true)
