@@ -1,7 +1,5 @@
 # PokeVisualizer
-Pokemon Stat Visualizer for CS396 A3
-
-Final Project for CS396 Interactive Data Visualizations
+Pokemon Stat Visualizer
 
 Allows users to filter for specific Pokemon as well as visualize the their base stats not viewable in the game.
 
